@@ -26,8 +26,8 @@ public class CustomerService {
                 .orElseThrow(() -> new RuntimeException("Customer not found: " + id));
     }
 
-    public Optional<CustomerEntity> findByUserId(Long userId) {
-        return customerRepository.findByUserId(userId);
+    public Optional<CustomerEntity> findByLoginId(String loginId) {
+        return customerRepository.findByLoginId(loginId);
     }
 
     public CustomerEntity save(CustomerEntity customer) {

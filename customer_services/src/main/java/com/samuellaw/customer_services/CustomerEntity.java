@@ -21,8 +21,8 @@ public class CustomerEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // FK reference to the web_client WebUserEntity's id
-    private Long userId;
+    // FK reference to web-user WebUser's loginId (String PK)
+    private String loginId;
 
     private String firstName;
     private String lastName;
@@ -35,8 +35,8 @@ public class CustomerEntity {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public Long getUserId() { return userId; }
-    public void setUserId(Long userId) { this.userId = userId; }
+    public String getLoginId() { return loginId; }
+    public void setLoginId(String loginId) { this.loginId = loginId; }
 
     public String getFirstName() { return firstName; }
     public void setFirstName(String firstName) { this.firstName = firstName; }
