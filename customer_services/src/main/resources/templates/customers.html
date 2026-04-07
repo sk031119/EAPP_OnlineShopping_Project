@@ -2,45 +2,53 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customers</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
-<h1>Customer List</h1>
-<a th:href="@{/customer/new}">+ Add Customer</a>
+<div class="container container-wide">
+    <h2>Customer List</h2>
 
-<table border="1" cellpadding="6">
-    <thead>
-        <tr>
-            <th>ID</th>
+    <p class="toolbar">
+        <a class="btn btn-secondary btn-inline" th:href="@{/customer/new}">+ Add Customer</a>
+    </p>
+
+    <div class="table-wrap">
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th>ID</th>
                 <th>Login ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Address</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="customer : ${customers}">
-            <td th:text="${customer.id}"></td>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="customer : ${customers}">
+                <td th:text="${customer.id}"></td>
                 <td th:text="${customer.loginId}"></td>
-            <td th:text="${customer.firstName}"></td>
-            <td th:text="${customer.lastName}"></td>
-            <td th:text="${customer.email}"></td>
-            <td th:text="${customer.phone}"></td>
-            <td th:text="${customer.address}"></td>
-            <td>
-                <a th:href="@{/customer/edit/{id}(id=${customer.id})}">Edit</a>
-                &nbsp;
-                <a th:href="@{/customer/delete/{id}(id=${customer.id})}"
-                   onclick="return confirm('Delete this customer?')">Delete</a>
-            </td>
-        </tr>
-        <tr th:if="${#lists.isEmpty(customers)}">
-            <td colspan="8">No customers found.</td>
-        </tr>
-    </tbody>
-</table>
+                <td th:text="${customer.firstName}"></td>
+                <td th:text="${customer.lastName}"></td>
+                <td th:text="${customer.email}"></td>
+                <td th:text="${customer.phone}"></td>
+                <td th:text="${customer.address}"></td>
+                <td class="actions">
+                    <a th:href="@{/customer/edit/{id}(id=${customer.id})}">Edit</a>
+                    <a class="danger" th:href="@{/customer/delete/{id}(id=${customer.id})}"
+                       onclick="return confirm('Delete this customer?')">Delete</a>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(customers)}" class="empty-row">
+                <td colspan="8">No customers found.</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>
